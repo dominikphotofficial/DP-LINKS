@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/png" href="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" />
     
-    <!-- PWA Web App Manifest & Mobile Web App Meta -->
+    <!-- PWA Web App Manifest & Mobile App Configuration -->
     <link rel="manifest" href="manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -22,42 +22,219 @@
     <meta property="og:image" content="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Google Fonts: Plus Jakarta Sans -->
+    <!-- Google Fonts: Plus Jakarta Sans (Weights 400, 500, 700, 800) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              emerald: {
-                950: '#071616',
-                900: '#113939',
-                850: '#0E2E2E',
-                800: '#174d4d',
-              },
-              cardSlate: '#F8FAFA',
-              borderSlate: '#E4EAEA',
-            },
-            fontFamily: {
-              sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-            },
-          },
-        },
-      };
-    </script>
 
     <!-- QR Code Generator Library -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
     <style>
+      /* ============================================================== */
+      /* 7. GLOBAL CSS TOKENS FILE (PURE DESIGN SYSTEM SPECIFICATION)   */
+      /* ============================================================== */
+      :root {
+        /* Brand Accents */
+        --primary: #113939;
+        --primary-hover: #0a2525;
+        --primary-subtle: rgba(17, 57, 57, 0.08);
+        --primary-border: rgba(17, 57, 57, 0.15);
+
+        /* Neutrals & Surfaces */
+        --bg-white: #ffffff;
+        --bg-slate: #f8fafa;
+        --bg-card: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-muted: #5e6d6d;
+        --text-light: #8a9696;
+        --border-light: #e4eaea;
+        --border-subtle: #edf2f2;
+
+        /* Geometry & Shapes */
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 20px;
+        --radius-full: 9999px;
+
+        /* Shadows & Depth */
+        --shadow-sm: 0 2px 6px rgba(17, 57, 57, 0.04);
+        --shadow-md: 0 10px 30px rgba(17, 57, 57, 0.06);
+        --shadow-lg: 0 18px 45px rgba(17, 57, 57, 0.10);
+        --shadow-active: 0 20px 45px rgba(17, 57, 57, 0.16);
+
+        /* Motion & Typography */
+        --transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+        --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --max-width: 1200px;
+      }
+
       body {
-        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-family: var(--font-family);
+        background-color: var(--bg-white);
+        color: var(--text-dark);
         -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Display & Hero Titles */
+      .hero-title {
+        font-weight: 800;
+        font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+
+      /* Section Titles */
+      .section-title {
+        font-weight: 800;
+        font-size: 2.1rem;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+
+      /* Card & Component Titles */
+      .card-title {
+        font-weight: 700;
+        font-size: 1.15rem;
+        line-height: 1.3;
+        letter-spacing: 0em;
+      }
+
+      /* Badges & Categories */
+      .badge-category {
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--primary);
+        background-color: var(--primary-subtle);
+        padding: 0.25rem 0.65rem;
+        border-radius: var(--radius-full);
+      }
+
+      /* Primary Button */
+      .btn-primary {
+        background-color: var(--primary);
+        color: #ffffff;
+        border: none;
+        border-radius: var(--radius-full);
+        padding: 0.85rem 1.75rem;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 14px rgba(17, 57, 57, 0.20);
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(17, 57, 57, 0.28);
+      }
+
+      /* Secondary Button */
+      .btn-secondary {
+        background-color: var(--bg-slate);
+        color: var(--text-dark);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-full);
+        padding: 0.85rem 1.75rem;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn-secondary:hover {
+        background-color: #ffffff;
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* Interactive Link Card (Specification 4.2) */
+      .interactive-card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        padding: 1.25rem 1.5rem;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        display: block;
+        width: 100%;
+        text-decoration: none;
+      }
+      .interactive-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--primary);
+        box-shadow: var(--shadow-md);
+      }
+      .card-arrow-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 9999px;
+        background-color: var(--bg-slate);
+        border: 1px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-dark);
+        transition: var(--transition);
+        flex-shrink: 0;
+      }
+      .interactive-card:hover .card-arrow-circle {
+        background-color: var(--primary);
+        color: #ffffff;
+        border-color: var(--primary);
+        transform: translate(3px, -3px);
+      }
+
+      /* 3D Floating Perspective (Card Stack Specification 5) */
+      .stack-container {
+        perspective: 1200px;
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        height: 250px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .stack-layer {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border-light);
+        background: var(--bg-slate);
+        transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+        box-shadow: var(--shadow-md);
+      }
+      /* Top Layer (Active) */
+      .stack-layer-1 {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+        opacity: 1.0;
+        z-index: 10;
+        box-shadow: var(--shadow-active);
+      }
+      /* Second Layer (Offset Right) */
+      .stack-layer-2 {
+        transform: translate3d(24px, 14px, -40px) scale(0.93) rotate(3.5deg);
+        opacity: 0.88;
+        z-index: 8;
+      }
+      /* Third Layer (Offset Left) */
+      .stack-layer-3 {
+        transform: translate3d(-22px, 24px, -80px) scale(0.86) rotate(-3.5deg);
+        opacity: 0.72;
+        z-index: 6;
       }
 
       @keyframes kenburns-subtle {
@@ -65,7 +242,6 @@
         50% { transform: scale(1.06); }
         100% { transform: scale(1.02); }
       }
-
       .animate-kenburns {
         animation: kenburns-subtle 16s ease-in-out infinite alternate;
       }
@@ -74,46 +250,46 @@
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #FFFFFF;
+        background: #ffffff;
       }
       ::-webkit-scrollbar-thumb {
-        background: #E4EAEA;
+        background: #e4eaea;
         border-radius: 9999px;
       }
     </style>
   </head>
-  <body class="bg-[#FFFFFF] text-slate-900 antialiased selection:bg-[#113939] selection:text-white min-h-screen flex flex-col justify-between">
+  <body class="min-h-screen flex flex-col justify-between">
 
     <!-- ============================================================== -->
     <!-- 1. HERO SECTION — CINEMATIC BACKGROUND SLIDESHOW               -->
     <!-- ============================================================== -->
-    <section id="hero-section" class="relative w-full min-h-[90vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-slate-950 text-white">
+    <section id="hero-section" class="relative w-full min-h-[90vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A0F0D] text-white">
       
-      <!-- Background Slideshow Layer (8 Supplied Photographs) -->
+      <!-- Background Slideshow Layer (8 Photographs) -->
       <div id="slideshow-container" class="absolute inset-0 z-0">
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-10" data-index="0">
-          <img src="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" alt="Photography 01" class="w-full h-full object-cover object-center animate-kenburns" loading="eager" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" alt="Photo 01" class="w-full h-full object-cover object-center animate-kenburns" loading="eager" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="1">
-          <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Photography 02" class="w-full h-full object-cover object-center" loading="eager" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Photo 02" class="w-full h-full object-cover object-center" loading="eager" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="2">
-          <img src="https://i.postimg.cc/4NqyTsg1/LATVIJA-2025-33.jpg" alt="Photography 03" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/4NqyTsg1/LATVIJA-2025-33.jpg" alt="Photo 03" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="3">
-          <img src="https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg" alt="Photography 04" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg" alt="Photo 04" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="4">
-          <img src="https://i.postimg.cc/XvB11XCD/IMG-9593.jpg" alt="Photography 05" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/XvB11XCD/IMG-9593.jpg" alt="Photo 05" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="5">
-          <img src="https://i.postimg.cc/QNb45KBt/IMG-8377.jpg" alt="Photography 06" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/QNb45KBt/IMG-8377.jpg" alt="Photo 06" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="6">
-          <img src="https://i.postimg.cc/hPqPfss2/bird-07.jpg" alt="Photography 07" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/hPqPfss2/bird-07.jpg" alt="Photo 07" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
         <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="7">
-          <img src="https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg" alt="Photography 08" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg" alt="Photo 08" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
         </div>
 
         <!-- Overlays for Readability -->
@@ -121,63 +297,57 @@
       </div>
 
       <!-- Top Header Navigation (Single logo placement, NO text "DP" next to logo) -->
-      <div class="relative z-30 w-full max-w-2xl mx-auto px-6 pt-7 flex items-center justify-between">
-        <!-- Logo ONLY, no text near logo -->
+      <div class="relative z-30 w-full max-w-[1200px] mx-auto px-6 pt-7 flex items-center justify-between">
         <img src="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" alt="Emblem" class="w-11 h-11 object-contain drop-shadow-md" referrerpolicy="no-referrer" />
 
-        <div class="flex items-center gap-2">
-          <!-- Install Button (PWA) -->
-          <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-[#113939] hover:bg-slate-100 active:scale-95 text-xs font-semibold shadow-md transition-all">
-            <svg class="w-3.5 h-3.5 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <div class="flex items-center gap-2.5">
+          <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#113939] hover:bg-[#F8FAFA] active:scale-95 text-xs font-bold shadow-md transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
             <span>Install</span>
           </button>
 
-          <!-- Share QR Button -->
-          <button onclick="openQRModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-medium text-white backdrop-blur-md border border-white/15 transition-all">
+          <button onclick="openQRModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-semibold text-white backdrop-blur-md border border-white/20 transition-all">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
-            <span class="text-[11px] tracking-wider uppercase">QR</span>
+            <span class="text-[11px] uppercase tracking-wider">QR</span>
           </button>
 
-          <!-- Save Contact Button -->
-          <button onclick="downloadVCard()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#113939] hover:bg-[#174d4d] text-white active:scale-95 text-xs font-semibold shadow-md transition-all">
+          <button onclick="downloadVCard()" class="btn-primary !py-1.5 !px-4 !text-xs">
             <span>Save Contact</span>
           </button>
         </div>
       </div>
 
       <!-- Main Hero Content -->
-      <div class="relative z-30 w-full max-w-md mx-auto px-6 py-12 flex flex-col items-center text-center my-auto">
-        <!-- Title: DP.LINK -->
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-2">
+      <div class="relative z-30 w-full max-w-xl mx-auto px-6 py-12 flex flex-col items-center text-center my-auto">
+        <h1 class="hero-title text-white mb-2">
           DP.LINK
         </h1>
 
-        <!-- Short brand statement -->
-        <p class="text-xs sm:text-sm uppercase tracking-[0.35em] text-zinc-300 font-semibold mb-8">
+        <p class="text-xs sm:text-sm uppercase tracking-[0.35em] text-[#8A9696] font-semibold mb-8">
           SPACE. LIGHT. EMOTION.
         </p>
 
-        <!-- Primary Action Buttons -->
+        <!-- Primary CTA Buttons -->
         <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#113939] hover:bg-slate-100 active:scale-[0.98] font-bold text-xs tracking-wider uppercase transition-all shadow-xl shadow-black/40 group">
+          <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto flex-1">
             <span>EXPLORE SERVICES</span>
-            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+            <svg class="w-4 h-4 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
           </a>
 
-          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white active:scale-[0.98] font-semibold text-xs tracking-wider uppercase backdrop-blur-md border border-white/20 transition-all">
+          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="btn-secondary !bg-white/10 !text-white !border-white/20 hover:!bg-white hover:!text-[#113939] w-full sm:w-auto flex-1">
             <span>GET IN TOUCH</span>
           </a>
         </div>
       </div>
 
-      <!-- Quiet Bottom Indicator -->
-      <div class="relative z-30 w-full max-w-2xl mx-auto px-6 pb-6 pt-2">
-        <div class="flex items-center justify-between text-xs text-zinc-400">
+      <!-- Bottom Indicators & Controls -->
+      <div class="relative z-30 w-full max-w-[1200px] mx-auto px-6 pb-6 pt-2">
+        <div class="flex items-center justify-between text-xs text-[#8A9696]">
           <div class="flex items-center gap-2">
-            <span id="slide-counter" class="font-mono text-zinc-300">01 / 08</span>
+            <span id="slide-counter" class="font-mono text-white text-xs">01 / 08</span>
           </div>
 
-          <a href="#links" class="flex items-center gap-1.5 text-zinc-300 hover:text-white uppercase tracking-[0.25em] text-[11px] font-medium">
+          <a href="#links" class="flex items-center gap-1.5 text-white/80 hover:text-white uppercase tracking-[0.25em] text-[11px] font-medium">
             <span>Links</span>
             <svg class="w-3.5 h-3.5 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
           </a>
@@ -190,13 +360,13 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- 2. MAIN DIGITAL BUSINESS CARD (DP.LINK)                        -->
+    <!-- 2. MAIN DIGITAL BUSINESS CARD CONTAINER (1200px Grid)         -->
     <!-- ============================================================== -->
-    <main id="links" class="w-full max-w-md mx-auto px-4 sm:px-6 py-12 flex flex-col items-center bg-[#FFFFFF]">
+    <main id="links" class="w-full max-w-[1200px] mx-auto px-6 py-16 flex flex-col items-center bg-[#FFFFFF]">
       
-      <!-- Header Lockup: DP.LINK & Statement -->
-      <div class="w-full flex flex-col items-center text-center mb-8">
-        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">
+      <!-- Title & Kicker -->
+      <div class="w-full flex flex-col items-center text-center mb-10">
+        <h2 class="section-title text-[#1A1A1A]">
           DP.LINK
         </h2>
         <p class="text-xs uppercase tracking-[0.3em] text-[#113939] font-bold mt-1.5">
@@ -204,184 +374,203 @@
         </p>
       </div>
 
-      <!-- Destination Cards (#F8FAFA Slate, 1px #E4EAEA) -->
-      <div class="w-full space-y-3.5">
+      <!-- 3D Floating Perspective (Card Stack Specification 5) -->
+      <div class="w-full my-6 mb-12 flex flex-col items-center">
+        <div id="photo-stack" class="stack-container" onclick="cyclePhotoStack()" title="Tap to cycle 3D stack">
+          <!-- Layer 1: Top Layer (Active) -->
+          <div id="deck-card-0" class="stack-layer stack-layer-1">
+            <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Love" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+          <!-- Layer 2: Second Layer (Offset Right) -->
+          <div id="deck-card-1" class="stack-layer stack-layer-2">
+            <img src="https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg" alt="Latvija" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+          <!-- Layer 3: Third Layer (Offset Left) -->
+          <div id="deck-card-2" class="stack-layer stack-layer-3">
+            <img src="https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg" alt="Winter" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+        <p class="text-[11px] text-[#8A9696] uppercase tracking-wider mt-5">
+          Tap card stack to shuffle
+        </p>
+      </div>
+
+      <!-- Destination Cards (Linktree / Taplink Grid Specification 4.2) -->
+      <div class="w-full max-w-xl space-y-3.5">
         
-        <!-- 1. Services -->
-        <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939]">Services</span>
-            <div class="w-8 h-8 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        <!-- 1. Services Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
+          <div class="flex items-center justify-between mb-1">
+            <span class="badge-category">Services</span>
+            <div class="card-arrow-circle">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#113939] transition-colors">
+          <h3 class="card-title text-[#1A1A1A]">
             Photography Services
           </h3>
-          <div class="mt-3 pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-[11px]">
-            <span class="text-slate-400">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
+            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
               EXPLORE SERVICES →
             </span>
           </div>
         </a>
 
-        <!-- 2. TFP Booking -->
-        <a href="https://portfolio.dominikphotofficial.lt/tfp-booking.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939]">Booking</span>
-            <div class="w-8 h-8 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        <!-- 2. TFP Booking Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/tfp-booking.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
+          <div class="flex items-center justify-between mb-1">
+            <span class="badge-category">Booking</span>
+            <div class="card-arrow-circle">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#113939] transition-colors">
+          <h3 class="card-title text-[#1A1A1A]">
             TFP Booking
           </h3>
-          <div class="mt-3 pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-[11px]">
-            <span class="text-slate-400">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
+            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
               TFP BOOKING →
             </span>
           </div>
         </a>
 
-        <!-- 3. Contacts Page -->
-        <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939]">Inquiries</span>
-            <div class="w-8 h-8 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        <!-- 3. Contacts Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
+          <div class="flex items-center justify-between mb-1">
+            <span class="badge-category">Inquiries</span>
+            <div class="card-arrow-circle">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#113939] transition-colors">
+          <h3 class="card-title text-[#1A1A1A]">
             Contacts & Inquiries
           </h3>
-          <div class="mt-3 pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-[11px]">
-            <span class="text-slate-400">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
+            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
               GET IN TOUCH →
             </span>
           </div>
         </a>
 
         <!-- 4. DP.CORPORATION -->
-        <a href="https://corporation.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#113939] p-5 text-white transition-all duration-200 hover:bg-[#0E2E2E] hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.99]">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-300">Ecosystem</span>
-            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#113939] transition-colors">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        <a href="https://corporation.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="interactive-card !bg-[#113939] text-white hover:!border-[#113939] group">
+          <div class="flex items-center justify-between mb-1">
+            <span class="badge-category !bg-white/10 !text-white">Ecosystem</span>
+            <div class="card-arrow-circle !bg-white/10 !border-white/20 !text-white group-hover:!bg-white group-hover:!text-[#113939]">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </div>
-          <h3 class="text-lg font-bold text-white mb-0.5">
+          <h3 class="card-title text-white">
             DP.CORPORATION
           </h3>
-          <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[11px]">
-            <span class="text-emerald-200/70">corporation.dominikphotofficial.lt</span>
-            <span class="font-bold tracking-wider text-white uppercase group-hover:underline underline-offset-4">
+          <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-[#8A9696] font-mono text-[11px]">corporation.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-white uppercase">
               EXPLORE DP.CORPORATION →
             </span>
           </div>
         </a>
       </div>
 
-      <!-- ============================================================== -->
-      <!-- 3. SOCIAL MEDIA (4 Channels)                                   -->
-      <!-- ============================================================== -->
-      <div class="w-full my-8">
-        <div class="grid grid-cols-2 gap-2.5">
+      <!-- Social Media Section (Specification 4.2 / 4 Channels) -->
+      <div class="w-full max-w-xl my-8">
+        <div class="grid grid-cols-2 gap-3">
           <!-- Instagram -->
-          <a href="https://instagram.com/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-[12px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
-            <svg class="w-4 h-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-            <span class="text-xs font-semibold text-slate-900">Instagram</span>
+          <a href="https://instagram.com/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
+            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <span class="text-xs font-bold text-[#1A1A1A]">Instagram</span>
           </a>
 
           <!-- Threads -->
-          <a href="https://threads.net/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-[12px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
-            <svg class="w-4 h-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-            <span class="text-xs font-semibold text-slate-900">Threads</span>
+          <a href="https://threads.net/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
+            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+            <span class="text-xs font-bold text-[#1A1A1A]">Threads</span>
           </a>
 
           <!-- Behance -->
-          <a href="https://behance.net/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-[12px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
-            <svg class="w-4 h-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span class="text-xs font-semibold text-slate-900">Behance</span>
+          <a href="https://behance.net/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
+            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="text-xs font-bold text-[#1A1A1A]">Behance</span>
           </a>
 
           <!-- YouTube -->
-          <a href="https://youtube.com/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-3 rounded-[12px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
-            <svg class="w-4 h-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
-            <span class="text-xs font-semibold text-slate-900">YouTube</span>
+          <a href="https://youtube.com/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
+            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+            <span class="text-xs font-bold text-[#1A1A1A]">YouTube</span>
           </a>
         </div>
       </div>
 
-      <!-- ============================================================== -->
-      <!-- 4. DIRECT CONTACT (Email & Form)                               -->
-      <!-- ============================================================== -->
-      <div class="w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 text-center">
-        <span class="text-[10px] font-bold tracking-[0.2em] text-[#113939] uppercase">
-          CONTACT
-        </span>
-        <h3 class="text-lg font-bold text-slate-900 mt-1 mb-3">
+      <!-- Direct Contact Section -->
+      <div class="w-full max-w-xl rounded-[20px] bg-[#F8FAFA] border border-[#E4EAEA] p-6 text-center">
+        <span class="badge-category">Contact</span>
+        <h3 class="card-title text-[#1A1A1A] mt-2 mb-3">
           Get in Touch
         </h3>
 
-        <!-- Clickable mailto: link -->
-        <a href="mailto:info@dominikphotofficial.lt" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#E4EAEA] text-xs sm:text-sm font-semibold text-slate-800 hover:text-[#113939] hover:border-[#113939] transition-all mb-3 shadow-xs">
-          <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          <span>info@dominikphotofficial.lt</span>
-        </a>
-
-        <div class="flex items-center justify-center gap-2">
-          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-[#113939] text-white hover:bg-[#0E2E2E] active:scale-[0.98] font-bold text-xs tracking-wider uppercase transition-all shadow-sm">
-            Contact Form
+        <!-- Mailto Link with Copy Button -->
+        <div class="mb-4 flex items-center justify-between gap-3 p-3 rounded-[14px] bg-white border border-[#E4EAEA]">
+          <a href="mailto:info@dominikphotofficial.lt" class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#1A1A1A] hover:text-[#113939] truncate">
+            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span class="truncate">info@dominikphotofficial.lt</span>
           </a>
-          <button onclick="downloadVCard()" class="flex-1 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 active:scale-[0.98] font-semibold text-xs tracking-wider uppercase border border-[#E4EAEA] transition-all">
-            Save vCard
+          <button onclick="copyText('info@dominikphotofficial.lt', 'Email copied!')" class="px-3 py-1.5 rounded-full bg-[#F8FAFA] hover:bg-[#E4EAEA] text-xs font-bold text-[#113939] transition-colors shrink-0">
+            Copy
+          </button>
+        </div>
+
+        <div class="flex items-center justify-center gap-3">
+          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="btn-primary flex-1 !text-xs">
+            <span>Contact Form</span>
+          </a>
+          <button onclick="downloadVCard()" class="btn-secondary flex-1 !text-xs">
+            <span>Save vCard</span>
           </button>
         </div>
       </div>
     </main>
 
     <!-- ============================================================== -->
-    <!-- 5. FOOTER: DP.LINK with "Dominikphotofficial" on All Rights Reserved -->
+    <!-- 3. FOOTER: DP.LINK (Copyright with Dominikphotofficial)        -->
     <!-- ============================================================== -->
-    <footer class="w-full border-t border-[#E4EAEA] bg-[#F8FAFA] py-8 px-6 text-slate-500 text-center">
-      <h4 class="text-sm font-extrabold tracking-widest uppercase text-slate-900 mb-1">
+    <footer class="w-full border-t border-[#E4EAEA] bg-[#F8FAFA] py-10 px-6 text-center">
+      <h4 class="text-sm font-extrabold tracking-widest uppercase text-[#1A1A1A] mb-1">
         DP.LINK
       </h4>
       <p class="text-[10px] uppercase tracking-[0.25em] text-[#113939] font-bold mb-4">
         SPACE. LIGHT. EMOTION.
       </p>
-      <!-- Dominikphotofficial used exclusively when all rights reserved -->
-      <div class="text-[11px] text-slate-400">
+      <div class="text-[11px] text-[#8A9696]">
         © <span id="current-year">2026</span> Dominikphotofficial . All rights reserved.
       </div>
     </footer>
 
     <!-- ============================================================== -->
-    <!-- 6. MODALS: QR SHARE & PWA GUIDE                                -->
+    <!-- 4. MODALS: QR SHARE & PWA GUIDE                                -->
     <!-- ============================================================== -->
     
     <!-- QR Share Modal -->
     <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div class="relative w-full max-w-xs rounded-2xl bg-white border border-[#E4EAEA] p-6 text-center text-slate-900 shadow-2xl">
-        <button onclick="closeQRModal()" class="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 transition-colors" aria-label="Close">
+      <div class="relative w-full max-w-xs rounded-[20px] bg-white border border-[#E4EAEA] p-6 text-center text-[#1A1A1A] shadow-2xl">
+        <button onclick="closeQRModal()" class="absolute top-4 right-4 p-1.5 rounded-full text-[#5E6D6D] hover:text-[#1A1A1A] transition-colors" aria-label="Close">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
         </button>
 
-        <h4 class="text-sm font-bold uppercase tracking-widest text-[#113939] mb-1">DP.LINK</h4>
-        <p class="text-xs text-slate-500 mb-4">Scan with any phone camera</p>
+        <h4 class="text-sm font-extrabold uppercase tracking-widest text-[#113939] mb-1">DP.LINK</h4>
+        <p class="text-xs text-[#5E6D6D] mb-4">Scan with any phone camera</p>
 
-        <div class="w-52 h-52 mx-auto p-2 rounded-xl bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center mb-4">
+        <div class="w-52 h-52 mx-auto p-2 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center mb-4">
           <canvas id="qr-canvas"></canvas>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="copyCurrentUrl()" class="flex-1 px-3 py-2 rounded-xl bg-[#F8FAFA] hover:bg-slate-100 border border-[#E4EAEA] text-xs font-semibold text-slate-700 transition-all">
+          <button onclick="copyCurrentUrl()" class="btn-secondary flex-1 !py-2 !px-3 !text-xs">
             Copy Link
           </button>
-          <button onclick="downloadQRCodePNG()" class="flex-1 px-3 py-2 rounded-xl bg-[#113939] hover:bg-[#0E2E2E] text-white text-xs font-semibold transition-all">
+          <button onclick="downloadQRCodePNG()" class="btn-primary flex-1 !py-2 !px-3 !text-xs">
             Save QR
           </button>
         </div>
@@ -390,20 +579,20 @@
 
     <!-- PWA Install Guide Modal (iOS Safari) -->
     <div id="pwa-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div class="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-slate-200 text-center">
-        <button onclick="closePWAGuide()" class="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 transition-colors" aria-label="Close">
+      <div class="relative w-full max-w-sm rounded-[20px] bg-white p-6 shadow-2xl border border-[#E4EAEA] text-center">
+        <button onclick="closePWAGuide()" class="absolute top-4 right-4 p-1.5 rounded-full text-[#5E6D6D] hover:text-[#1A1A1A] transition-colors" aria-label="Close">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
         </button>
 
-        <h3 class="text-lg font-bold text-slate-900 mb-1">Install DP.LINK</h3>
-        <p class="text-xs text-slate-600 mb-4">Add to Home Screen for instant access:</p>
+        <h3 class="card-title text-[#1A1A1A] mb-1">Install DP.LINK</h3>
+        <p class="text-xs text-[#5E6D6D] mb-4">Add to Home Screen for instant offline access:</p>
 
-        <div class="text-left text-xs text-slate-600 bg-[#F8FAFA] p-3.5 rounded-xl border border-[#E4EAEA] mb-4 space-y-2">
-          <p>1. Tap the <strong class="text-slate-800">Share</strong> button in Safari.</p>
-          <p>2. Select <strong class="text-slate-800">Add to Home Screen</strong>.</p>
+        <div class="text-left text-xs text-[#5E6D6D] bg-[#F8FAFA] p-4 rounded-[14px] border border-[#E4EAEA] mb-4 space-y-2">
+          <p>1. Tap the <strong class="text-[#1A1A1A]">Share</strong> button in Safari.</p>
+          <p>2. Select <strong class="text-[#1A1A1A]">Add to Home Screen</strong>.</p>
         </div>
 
-        <button onclick="closePWAGuide()" class="w-full py-2.5 rounded-xl bg-[#113939] text-white text-xs font-semibold">
+        <button onclick="closePWAGuide()" class="btn-primary w-full !py-2.5 !text-xs">
           Done
         </button>
       </div>
@@ -415,7 +604,7 @@
     </div>
 
     <!-- ============================================================== -->
-    <!-- 7. JAVASCRIPT: SLIDESHOW, PWA & UTILITIES                      -->
+    <!-- 5. JAVASCRIPT: SLIDESHOW, 3D STACK, PWA & UTILITIES            -->
     <!-- ============================================================== -->
     <script>
       // Service Worker Registration for PWA
@@ -456,7 +645,7 @@
         document.getElementById('pwa-guide-modal').classList.remove('flex');
       }
 
-      // Slideshow (8 Photographs)
+      // 8 Photographs Slideshow
       const slides = document.querySelectorAll('.slide');
       const counterEl = document.getElementById('slide-counter');
       const playPauseText = document.getElementById('play-pause-text');
@@ -502,6 +691,29 @@
 
       startSlideshow();
 
+      // 3D Floating Perspective (Card Stack Specification 5)
+      let activeDeckPos = 0;
+      const deckCards = [
+        document.getElementById('deck-card-0'),
+        document.getElementById('deck-card-1'),
+        document.getElementById('deck-card-2')
+      ];
+
+      function cyclePhotoStack() {
+        activeDeckPos = (activeDeckPos + 1) % 3;
+        deckCards.forEach((card, idx) => {
+          const relPos = (idx - activeDeckPos + 3) % 3;
+          card.classList.remove('stack-layer-1', 'stack-layer-2', 'stack-layer-3');
+          if (relPos === 0) {
+            card.classList.add('stack-layer-1');
+          } else if (relPos === 1) {
+            card.classList.add('stack-layer-2');
+          } else {
+            card.classList.add('stack-layer-3');
+          }
+        });
+      }
+
       // QR Modal
       const qrModal = document.getElementById('qr-modal');
       const qrCanvas = document.getElementById('qr-canvas');
@@ -535,7 +747,7 @@
         copyText(window.location.href, 'Link copied!');
       }
 
-      // vCard Contact Generation & Download (.vcf)
+      // vCard Contact (.vcf)
       function downloadVCard() {
         const vcard = [
           'BEGIN:VCARD',
