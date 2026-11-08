@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "DP — Dominikphotofficial",
-  "short_name": "DP Links",
-  "description": "SPACE. LIGHT. EMOTION. Official digital business card and portfolio for DP / Dominikphotofficial.",
+  "name": "DP.LINK",
+  "short_name": "DP.LINK",
+  "description": "SPACE. LIGHT. EMOTION. DP.LINK",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
