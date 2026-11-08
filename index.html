@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" />
+    
+    <!-- PWA Web App Manifest & Apple Touch Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="DP Links" />
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" />
+    <meta name="theme-color" content="#113939" />
+
+    <title>Dominikphotofficial | Digital Business Card</title>
+    <meta name="description" content="SPACE. LIGHT. EMOTION. Official digital business card and portfolio for Dominikphotofficial." />
+    <meta property="og:title" content="Dominikphotofficial | Digital Business Card" />
+    <meta property="og:description" content="SPACE. LIGHT. EMOTION." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              emerald: {
+                950: '#071616',
+                900: '#113939',
+                850: '#0E2E2E',
+                800: '#174d4d',
+                700: '#1d6060',
+              },
+              cardSlate: '#F8FAFA',
+              borderSlate: '#E4EAEA',
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- QR Code Generator Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      @keyframes kenburns-subtle {
+        0% { transform: scale(1.02); }
+        50% { transform: scale(1.06); }
+        100% { transform: scale(1.02); }
+      }
+
+      .animate-kenburns {
+        animation: kenburns-subtle 16s ease-in-out infinite alternate;
+      }
+
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FFFFFF;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #E4EAEA;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #CBD5E1;
+      }
+    </style>
+  </head>
+  <body class="bg-[#FFFFFF] text-slate-900 antialiased selection:bg-[#113939] selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- ============================================================== -->
+    <!-- 1. HERO SECTION — CINEMATIC BACKGROUND SLIDESHOW               -->
+    <!-- ============================================================== -->
+    <section id="hero-section" class="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-slate-950 text-white">
+      
+      <!-- Background Slideshow Layer (All 8 Supplied Photographs) -->
+      <div id="slideshow-container" class="absolute inset-0 z-0">
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-10" data-index="0" data-title="Street & Solitude">
+          <img src="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" alt="Photograph 01" class="w-full h-full object-cover object-center animate-kenburns" loading="eager" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="1" data-title="Love & Intimacy">
+          <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Photograph 02" class="w-full h-full object-cover object-center" loading="eager" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="2" data-title="Latvija Horizon">
+          <img src="https://i.postimg.cc/4NqyTsg1/LATVIJA-2025-33.jpg" alt="Photograph 03" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="3" data-title="Dune Geometry">
+          <img src="https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg" alt="Photograph 04" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="4" data-title="Visual Poetry">
+          <img src="https://i.postimg.cc/XvB11XCD/IMG-9593.jpg" alt="Photograph 05" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="5" data-title="Reflections & Shadows">
+          <img src="https://i.postimg.cc/QNb45KBt/IMG-8377.jpg" alt="Photograph 06" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="6" data-title="Wing & Sky">
+          <img src="https://i.postimg.cc/hPqPfss2/bird-07.jpg" alt="Photograph 07" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 z-0 pointer-events-none" data-index="7" data-title="Winter Silence">
+          <img src="https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg" alt="Photograph 08" class="w-full h-full object-cover object-center" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+
+        <!-- Overlays for Readability -->
+        <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/50 to-black/60"></div>
+      </div>
+
+      <!-- Top Header Navigation (Logo shown ONLY ONCE here, with NO adjacent "DP" text) -->
+      <div class="relative z-30 w-full max-w-4xl mx-auto px-6 pt-7 flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- Official DP Logo: Clean, by itself, with NO text saying "DP" next to it -->
+          <img src="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" alt="Dominikphotofficial Emblem" class="w-10 h-10 object-contain drop-shadow-md" referrerpolicy="no-referrer" />
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- PWA Install Button -->
+          <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-[#113939] hover:bg-slate-100 active:scale-95 text-xs font-semibold shadow-md transition-all">
+            <svg class="w-3.5 h-3.5 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            <span>Install Card</span>
+          </button>
+
+          <button onclick="openQRModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-medium text-white backdrop-blur-md border border-white/15 transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+            <span class="text-[11px] tracking-wider uppercase">Share QR</span>
+          </button>
+
+          <button onclick="downloadVCard()" class="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#113939] hover:bg-[#174d4d] text-white active:scale-95 text-xs font-semibold shadow-md transition-all">
+            <span>Save Contact</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Hero Content -->
+      <div class="relative z-30 w-full max-w-xl mx-auto px-6 py-12 flex flex-col items-center text-center my-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2">
+          Dominikphotofficial
+        </h1>
+
+        <!-- Brand statement strictly as specified -->
+        <p class="text-xs sm:text-sm uppercase tracking-[0.35em] text-zinc-300 font-semibold mb-8">
+          SPACE. LIGHT. EMOTION.
+        </p>
+
+        <!-- Primary CTA Buttons -->
+        <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md">
+          <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-[#113939] hover:bg-slate-100 active:scale-[0.98] font-bold text-xs tracking-wider uppercase transition-all shadow-xl shadow-black/40 group">
+            <span>EXPLORE SERVICES</span>
+            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+
+          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white active:scale-[0.98] font-semibold text-xs tracking-wider uppercase backdrop-blur-md border border-white/20 transition-all">
+            <span>GET IN TOUCH</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Slideshow Controls -->
+      <div class="relative z-30 w-full max-w-4xl mx-auto px-6 pb-6 pt-2">
+        <div class="flex items-center justify-between p-3 rounded-xl bg-black/50 backdrop-blur-md border border-white/10 text-xs">
+          <div class="flex items-center gap-2">
+            <span id="slide-counter" class="font-mono text-zinc-300 text-xs">
+              01 / 08
+            </span>
+            <span class="text-zinc-500">·</span>
+            <span id="slide-title" class="text-zinc-300 text-xs truncate max-w-[150px] sm:max-w-xs">
+              Street & Solitude
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="prevSlide()" class="p-1.5 rounded-md hover:bg-white/10 text-zinc-300 hover:text-white transition-colors" title="Previous photograph" aria-label="Previous photograph">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="play-pause-btn" onclick="togglePlayPause()" class="px-2 py-1 rounded-md hover:bg-white/10 text-zinc-300 hover:text-white text-[11px] uppercase tracking-wider transition-colors">
+              <span id="play-pause-text">Pause</span>
+            </button>
+            <button onclick="nextSlide()" class="p-1.5 rounded-md hover:bg-white/10 text-zinc-300 hover:text-white transition-colors" title="Next photograph" aria-label="Next photograph">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <div class="h-3.5 w-px bg-white/20 mx-1"></div>
+            <button onclick="openFullscreenModal()" class="p-1.5 rounded-md hover:bg-white/10 text-zinc-300 hover:text-white transition-colors" title="Fullscreen" aria-label="Fullscreen">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <a href="#digital-business-card" class="mx-auto mt-4 flex items-center justify-center gap-1.5 text-[11px] text-zinc-400 hover:text-white transition-colors uppercase tracking-[0.25em]">
+          <span>Explore Card</span>
+          <svg class="w-3 h-3 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 2. USER STYLE: CLEAN PURE WHITE (#FFFFFF) WITH #F8FAFA CARDS   -->
+    <!-- ============================================================== -->
+    <main id="digital-business-card" class="w-full max-w-lg mx-auto px-5 py-14 flex flex-col items-center bg-[#FFFFFF]">
+      
+      <!-- Brand Title (Clean typography, no duplicate logo, no "DP" text near logo) -->
+      <div class="w-full flex flex-col items-center text-center mb-8">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">
+          Dominikphotofficial
+        </h2>
+
+        <p class="text-xs uppercase tracking-[0.3em] text-[#113939] font-bold mt-1.5">
+          SPACE. LIGHT. EMOTION.
+        </p>
+
+        <!-- Quick actions -->
+        <div class="flex items-center justify-center gap-2.5 mt-5">
+          <button onclick="openQRModal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#F8FAFA] hover:bg-slate-100 border border-[#E4EAEA] text-xs font-semibold text-slate-700 transition-all active:scale-95">
+            <svg class="w-3.5 h-3.5 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+            <span>Share QR</span>
+          </button>
+          <button onclick="downloadVCard()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#113939] hover:bg-[#0E2E2E] text-white text-xs font-semibold transition-all active:scale-95 shadow-md shadow-[#113939]/20">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+            <span>Save Contact</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Floating 3-Card Photo Showcase -->
+      <div class="w-full my-6 flex flex-col items-center">
+        <div id="photo-stack" class="relative w-64 sm:w-72 h-44 cursor-pointer select-none perspective-1000" onclick="cyclePhotoStack()" title="Tap to cycle showcase">
+          <div id="deck-card-0" class="deck-card absolute inset-0 rounded-2xl overflow-hidden border border-[#E4EAEA] bg-[#F8FAFA] shadow-xl transition-all duration-500 ease-out z-30 translate-y-0 rotate-0 scale-100">
+            <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Love" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+          <div id="deck-card-1" class="deck-card absolute inset-0 rounded-2xl overflow-hidden border border-[#E4EAEA] bg-[#F8FAFA] shadow-md transition-all duration-500 ease-out z-20 translate-y-3 rotate-2 scale-95 opacity-85">
+            <img src="https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg" alt="Latvija" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+          <div id="deck-card-2" class="deck-card absolute inset-0 rounded-2xl overflow-hidden border border-[#E4EAEA] bg-[#F8FAFA] shadow-sm transition-all duration-500 ease-out z-10 translate-y-6 -rotate-2 scale-90 opacity-70">
+            <img src="https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg" alt="Winter" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Link Cards (#F8FAFA Slate, 1px #E4EAEA Border, Deep Emerald Accent) -->
+      <section class="w-full space-y-3.5 my-4">
+        
+        <!-- 1. Services Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 sm:p-6 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939] block mb-1">Services</span>
+              <h3 class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#113939] transition-colors">
+                Photography Services
+              </h3>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center shrink-0 shadow-xs text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-xs">
+            <span class="text-slate-400 text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+              EXPLORE SERVICES →
+            </span>
+          </div>
+        </a>
+
+        <!-- 2. TFP Booking Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/tfp-booking.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 sm:p-6 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939] block mb-1">Booking</span>
+              <h3 class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#113939] transition-colors">
+                TFP Booking
+              </h3>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center shrink-0 shadow-xs text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-xs">
+            <span class="text-slate-400 text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+              TFP BOOKING →
+            </span>
+          </div>
+        </a>
+
+        <!-- 3. Contacts Card -->
+        <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="group block w-full rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-5 sm:p-6 transition-all duration-200 hover:shadow-lg hover:border-[#113939]/40 hover:-translate-y-0.5 active:scale-[0.99]">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-[#113939] block mb-1">Inquiries</span>
+              <h3 class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#113939] transition-colors">
+                Contacts
+              </h3>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-white border border-[#E4EAEA] flex items-center justify-center shrink-0 shadow-xs text-slate-700 group-hover:bg-[#113939] group-hover:text-white group-hover:border-[#113939] transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-[#E4EAEA] flex items-center justify-between text-xs">
+            <span class="text-slate-400 text-[11px]">portfolio.dominikphotofficial.lt</span>
+            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase group-hover:underline underline-offset-4">
+              GET IN TOUCH →
+            </span>
+          </div>
+        </a>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- 3. DP.CORPORATION — OFFICIAL ECOSYSTEM                         -->
+      <!-- ============================================================== -->
+      <section class="w-full my-8">
+        <div class="rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-6 text-slate-900">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-[#113939]">
+              ECOSYSTEM
+            </span>
+            <span class="text-[11px] text-slate-400 font-mono">corporation.dominikphotofficial.lt</span>
+          </div>
+
+          <h3 class="text-lg font-bold text-slate-900 mb-1">
+            DP.CORPORATION
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-5">
+            Part of the broader DP digital ecosystem.
+          </p>
+
+          <a href="https://corporation.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#113939] text-white hover:bg-[#0E2E2E] active:scale-[0.98] font-bold text-xs tracking-wider uppercase transition-all shadow-md group">
+            <span>EXPLORE DP.CORPORATION</span>
+            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- 4. SOCIAL MEDIA (Instagram, Threads, Behance, YouTube)         -->
+      <!-- ============================================================== -->
+      <section class="w-full my-6">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <span class="text-[10px] font-bold tracking-[0.2em] text-[#113939] uppercase">
+            CHANNELS
+          </span>
+          <span class="text-xs text-slate-400 font-medium">Official Links</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- Instagram -->
+          <a href="https://instagram.com/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:text-[#113939] transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-slate-900 block">Instagram</span>
+                <span class="text-[11px] text-slate-500 block">@dominikphotofficial</span>
+              </div>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-[#113939] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+
+          <!-- Threads -->
+          <a href="https://threads.net/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:text-[#113939] transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-slate-900 block">Threads</span>
+                <span class="text-[11px] text-slate-500 block">@dominikphotofficial</span>
+              </div>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-[#113939] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+
+          <!-- Behance -->
+          <a href="https://behance.net/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:text-[#113939] transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-slate-900 block">Behance</span>
+                <span class="text-[11px] text-slate-500 block">dominikphotofficial</span>
+              </div>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-[#113939] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://youtube.com/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939]/40 hover:bg-white transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white border border-[#E4EAEA] flex items-center justify-center text-slate-700 group-hover:text-[#113939] transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-slate-900 block">YouTube</span>
+                <span class="text-[11px] text-slate-500 block">@dominikphotofficial</span>
+              </div>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-[#113939] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- 5. CONTACT SECTION                                             -->
+      <!-- ============================================================== -->
+      <section class="w-full my-8">
+        <div class="rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] p-6 text-center">
+          <span class="text-[10px] font-bold tracking-[0.2em] text-[#113939] uppercase">
+            CONTACT
+          </span>
+          <h3 class="text-xl font-bold tracking-tight text-slate-900 mt-1 mb-2">
+            Get in Touch
+          </h3>
+          <p class="text-xs text-slate-500 mb-6">
+            Write directly or complete the official inquiry form.
+          </p>
+
+          <!-- Way 1: Clickable Email mailto: link -->
+          <div class="mb-4 p-3 rounded-xl bg-white border border-[#E4EAEA] flex items-center justify-between gap-3 shadow-xs">
+            <a href="mailto:info@dominikphotofficial.lt" class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-800 hover:text-[#113939] hover:underline truncate">
+              <svg class="w-4 h-4 text-[#113939] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span class="truncate">info@dominikphotofficial.lt</span>
+            </a>
+            <button onclick="copyText('info@dominikphotofficial.lt', 'Email copied!')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 transition-colors shrink-0">
+              Copy
+            </button>
+          </div>
+
+          <!-- Way 2: Official Contacts Page (Form) -->
+          <div class="flex flex-col sm:flex-row items-center gap-2.5">
+            <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#113939] text-white hover:bg-[#0E2E2E] active:scale-[0.98] font-bold text-xs tracking-wider uppercase transition-all shadow-md group">
+              <span>CONTACT ME</span>
+              <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+
+            <button onclick="downloadVCard()" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 active:scale-[0.98] font-semibold text-xs tracking-wider uppercase border border-[#E4EAEA] transition-all">
+              <span>Save vCard</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================== -->
+    <!-- 6. OFFICIAL FOOTER (No repeated logo)                           -->
+    <!-- ============================================================== -->
+    <footer class="w-full border-t border-[#E4EAEA] bg-[#F8FAFA] py-10 px-6 text-slate-500">
+      <div class="max-w-lg mx-auto flex flex-col items-center text-center">
+        <h4 class="text-sm font-bold tracking-widest uppercase text-slate-900 mb-1">
+          Dominikphotofficial
+        </h4>
+
+        <p class="text-[11px] uppercase tracking-[0.25em] text-[#113939] mb-6 font-semibold">
+          SPACE. LIGHT. EMOTION.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-600 mb-6">
+          <a href="https://portfolio.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="hover:text-[#113939] transition-colors">Portfolio</a>
+          <span class="text-slate-300">·</span>
+          <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="hover:text-[#113939] transition-colors">Services</a>
+          <span class="text-slate-300">·</span>
+          <a href="https://portfolio.dominikphotofficial.lt/tfp-booking.html" target="_blank" rel="noopener noreferrer" class="hover:text-[#113939] transition-colors">TFP Booking</a>
+          <span class="text-slate-300">·</span>
+          <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="hover:text-[#113939] transition-colors">Contacts</a>
+          <span class="text-slate-300">·</span>
+          <a href="https://corporation.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="hover:text-[#113939] transition-colors">DP.CORPORATION</a>
+        </div>
+
+        <div class="text-[11px] text-slate-400">
+          © <span id="current-year">2026</span> Dominikphotofficial . All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================== -->
+    <!-- 7. PWA INSTALL BANNER / DIALOG                                 -->
+    <!-- ============================================================== -->
+    <div id="pwa-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div class="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-slate-200 text-center">
+        <button onclick="closePWAGuide()" class="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 transition-colors" aria-label="Close">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+
+        <div class="w-12 h-12 mx-auto rounded-xl bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center text-[#113939] mb-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-1">Add to Home Screen</h3>
+        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+          Install this digital card on your device for instant offline access.
+        </p>
+
+        <div class="text-left text-xs text-slate-600 bg-[#F8FAFA] p-3.5 rounded-xl border border-[#E4EAEA] mb-4 space-y-2">
+          <p><strong>On iPhone / iPad (Safari):</strong></p>
+          <p>1. Tap the <strong class="text-slate-800">Share</strong> icon at the bottom of Safari.</p>
+          <p>2. Scroll down and select <strong class="text-slate-800">Add to Home Screen</strong>.</p>
+        </div>
+
+        <button onclick="closePWAGuide()" class="w-full py-2.5 rounded-xl bg-[#113939] text-white text-xs font-semibold">
+          Got It
+        </button>
+      </div>
+    </div>
+
+    <!-- QR Share Modal -->
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <div class="relative w-full max-w-xs rounded-2xl bg-white border border-[#E4EAEA] p-6 text-center text-slate-900 shadow-2xl">
+        <button onclick="closeQRModal()" class="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 transition-colors" aria-label="Close">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+
+        <h4 class="text-xs font-bold uppercase tracking-widest text-[#113939] mb-1">Dominikphotofficial</h4>
+        <p class="text-xs text-slate-500 mb-4">
+          Scan to open digital card
+        </p>
+
+        <div class="w-56 h-56 mx-auto p-2 rounded-xl bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center mb-4">
+          <canvas id="qr-canvas"></canvas>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="copyCurrentUrl()" class="flex-1 px-3 py-2 rounded-xl bg-[#F8FAFA] hover:bg-slate-100 border border-[#E4EAEA] text-xs font-semibold text-slate-700 transition-all">
+            Copy Link
+          </button>
+          <button onclick="downloadQRCodePNG()" class="flex-1 px-3 py-2 rounded-xl bg-[#113939] hover:bg-[#0E2E2E] text-white text-xs font-semibold transition-all shadow-md shadow-[#113939]/20">
+            Save QR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fullscreen Lightbox Modal -->
+    <div id="fullscreen-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-xl">
+      <div class="absolute top-0 left-0 right-0 p-5 flex items-center justify-between text-white z-20">
+        <div>
+          <h2 id="fs-title" class="text-xs uppercase tracking-widest text-zinc-300">Photograph</h2>
+        </div>
+        <button onclick="closeFullscreenModal()" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Close">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="relative w-full h-full max-h-[85vh] max-w-5xl p-4 flex items-center justify-center">
+        <img id="fs-image" src="" alt="Fullscreen Photograph" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" referrerpolicy="no-referrer" />
+      </div>
+
+      <button onclick="prevFullscreenSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all" aria-label="Previous">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <button onclick="nextFullscreenSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all" aria-label="Next">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div id="fs-counter" class="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/70 text-xs font-mono text-zinc-300">
+        1 / 8
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 px-4 py-2 rounded-full bg-[#113939] text-white text-xs font-semibold shadow-2xl transition-all">
+      <span id="toast-message">Copied</span>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 8. JAVASCRIPT: SLIDESHOW, PWA SERVICE WORKER & UTILITIES       -->
+    <!-- ============================================================== -->
+    <script>
+      // 1. Register PWA Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch((err) => {
+            console.log('ServiceWorker registration note:', err);
+          });
+        });
+      }
+
+      // 2. Handle PWA BeforeInstallPrompt
+      let deferredPrompt = null;
+      const pwaBtn = document.getElementById('pwa-install-btn');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (pwaBtn) {
+          pwaBtn.classList.remove('hidden');
+          pwaBtn.classList.add('flex');
+        }
+      });
+
+      function triggerPWAInstall() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            if (pwaBtn) pwaBtn.classList.add('hidden');
+          });
+        } else {
+          // Show iOS / manual guide
+          document.getElementById('pwa-guide-modal').classList.remove('hidden');
+          document.getElementById('pwa-guide-modal').classList.add('flex');
+        }
+      }
+
+      function closePWAGuide() {
+        document.getElementById('pwa-guide-modal').classList.add('hidden');
+        document.getElementById('pwa-guide-modal').classList.remove('flex');
+      }
+
+      // 3. Slideshow Data (All 8 Photographs)
+      const photos = [
+        { url: 'https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg', title: 'Street & Solitude' },
+        { url: 'https://i.postimg.cc/FKJ0hGDh/Love.jpg', title: 'Love & Intimacy' },
+        { url: 'https://i.postimg.cc/4NqyTsg1/LATVIJA-2025-33.jpg', title: 'Latvija Horizon' },
+        { url: 'https://i.postimg.cc/QxMVRk59/LATVIJA-2025-04.jpg', title: 'Dune Geometry' },
+        { url: 'https://i.postimg.cc/XvB11XCD/IMG-9593.jpg', title: 'Visual Poetry' },
+        { url: 'https://i.postimg.cc/QNb45KBt/IMG-8377.jpg', title: 'Reflections & Shadows' },
+        { url: 'https://i.postimg.cc/hPqPfss2/bird-07.jpg', title: 'Wing & Sky' },
+        { url: 'https://i.postimg.cc/B6Rsqhp9/winter-album-sventa-13.jpg', title: 'Winter Silence' }
+      ];
+
+      let currentSlide = 0;
+      let isPlaying = true;
+      let slideInterval = null;
+
+      const slides = document.querySelectorAll('.slide');
+      const counterEl = document.getElementById('slide-counter');
+      const titleEl = document.getElementById('slide-title');
+      const playPauseText = document.getElementById('play-pause-text');
+
+      function updateSlide(newIndex) {
+        slides[currentSlide].classList.remove('opacity-100', 'z-10');
+        slides[currentSlide].classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        const prevImg = slides[currentSlide].querySelector('img');
+        if (prevImg) prevImg.classList.remove('animate-kenburns');
+
+        currentSlide = (newIndex + photos.length) % photos.length;
+
+        slides[currentSlide].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+        slides[currentSlide].classList.add('opacity-100', 'z-10');
+        const currImg = slides[currentSlide].querySelector('img');
+        if (currImg) currImg.classList.add('animate-kenburns');
+
+        counterEl.textContent = `0${currentSlide + 1} / 0${photos.length}`;
+        titleEl.textContent = photos[currentSlide].title;
+      }
+
+      function nextSlide() {
+        updateSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        updateSlide(currentSlide - 1);
+      }
+
+      function startSlideshow() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 6000);
+      }
+
+      function togglePlayPause() {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+          startSlideshow();
+          playPauseText.textContent = 'Pause';
+        } else {
+          if (slideInterval) clearInterval(slideInterval);
+          playPauseText.textContent = 'Play';
+        }
+      }
+
+      startSlideshow();
+
+      // 4. 3D Photo Stack Cycle
+      let activeDeckPos = 0;
+      const deckCards = [
+        document.getElementById('deck-card-0'),
+        document.getElementById('deck-card-1'),
+        document.getElementById('deck-card-2')
+      ];
+
+      function cyclePhotoStack() {
+        activeDeckPos = (activeDeckPos + 1) % 3;
+        deckCards.forEach((card, idx) => {
+          const relPos = (idx - activeDeckPos + 3) % 3;
+          card.classList.remove(
+            'z-30', 'z-20', 'z-10',
+            'translate-y-0', 'rotate-0', 'scale-100', 'opacity-100',
+            'translate-y-3', 'rotate-2', 'scale-95', 'opacity-85',
+            'translate-y-6', '-rotate-2', 'scale-90', 'opacity-70'
+          );
+
+          if (relPos === 0) {
+            card.classList.add('z-30', 'translate-y-0', 'rotate-0', 'scale-100', 'opacity-100');
+          } else if (relPos === 1) {
+            card.classList.add('z-20', 'translate-y-3', 'rotate-2', 'scale-95', 'opacity-85');
+          } else {
+            card.classList.add('z-10', 'translate-y-6', '-rotate-2', 'scale-90', 'opacity-70');
+          }
+        });
+      }
+
+      // 5. Fullscreen Lightbox
+      let fullscreenIndex = 0;
+      const fsModal = document.getElementById('fullscreen-modal');
+      const fsImage = document.getElementById('fs-image');
+      const fsTitle = document.getElementById('fs-title');
+      const fsCounter = document.getElementById('fs-counter');
+
+      function openFullscreenModal() {
+        fullscreenIndex = currentSlide;
+        renderFullscreen();
+        fsModal.classList.remove('hidden');
+        fsModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeFullscreenModal() {
+        fsModal.classList.add('hidden');
+        fsModal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+
+      function renderFullscreen() {
+        fsImage.src = photos[fullscreenIndex].url;
+        fsTitle.textContent = photos[fullscreenIndex].title;
+        fsCounter.textContent = `${fullscreenIndex + 1} / ${photos.length}`;
+      }
+
+      function nextFullscreenSlide() {
+        fullscreenIndex = (fullscreenIndex + 1) % photos.length;
+        renderFullscreen();
+      }
+
+      function prevFullscreenSlide() {
+        fullscreenIndex = (fullscreenIndex - 1 + photos.length) % photos.length;
+        renderFullscreen();
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (!fsModal.classList.contains('hidden')) {
+          if (e.key === 'Escape') closeFullscreenModal();
+          if (e.key === 'ArrowRight') nextFullscreenSlide();
+          if (e.key === 'ArrowLeft') prevFullscreenSlide();
+        }
+      });
+
+      // 6. In-Person QR Share Modal
+      const qrModal = document.getElementById('qr-modal');
+      const qrCanvas = document.getElementById('qr-canvas');
+
+      function openQRModal() {
+        qrModal.classList.remove('hidden');
+        qrModal.classList.add('flex');
+        if (typeof QRCode !== 'undefined' && qrCanvas) {
+          QRCode.toCanvas(qrCanvas, window.location.href, {
+            width: 210,
+            margin: 1,
+            color: { dark: '#113939', light: '#FFFFFF' }
+          });
+        }
+      }
+
+      function closeQRModal() {
+        qrModal.classList.add('hidden');
+        qrModal.classList.remove('flex');
+      }
+
+      function downloadQRCodePNG() {
+        if (!qrCanvas) return;
+        const link = document.createElement('a');
+        link.download = 'Dominikphotofficial_QR.png';
+        link.href = qrCanvas.toDataURL('image/png');
+        link.click();
+      }
+
+      function copyCurrentUrl() {
+        copyText(window.location.href, 'Link copied!');
+      }
+
+      // 7. vCard Contact Export (.vcf)
+      function downloadVCard() {
+        const vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Dominik | Dominikphotofficial',
+          'N:Dominikphotofficial;;;;',
+          'ORG:DP.CORPORATION',
+          'TITLE:Photographer',
+          'EMAIL;TYPE=INTERNET,WORK:info@dominikphotofficial.lt',
+          'URL;TYPE=WORK:https://portfolio.dominikphotofficial.lt/',
+          'URL;TYPE=SERVICES:https://portfolio.dominikphotofficial.lt/services.html',
+          'URL;TYPE=BOOKING:https://portfolio.dominikphotofficial.lt/tfp-booking.html',
+          'URL;TYPE=CONTACTS:https://portfolio.dominikphotofficial.lt/contacts.html',
+          'URL;TYPE=ECOSYSTEM:https://corporation.dominikphotofficial.lt/',
+          'NOTE:SPACE. LIGHT. EMOTION.',
+          'END:VCARD'
+        ].join('\r\n');
+
+        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Dominikphotofficial.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showToast('vCard downloaded');
+      }
+
+      // 8. Toast Helper
+      let toastTimer = null;
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').textContent = msg;
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex');
+        }, 2000);
+      }
+
+      function copyText(text, msg) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(msg || 'Copied to clipboard');
+        }).catch(() => {
+          showToast('Copied: ' + text);
+        });
+      }
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

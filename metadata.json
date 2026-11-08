@@ -1,0 +1,6 @@
+{
+  "name": "DP — Premium Digital Business Card",
+  "description": "SPACE. LIGHT. EMOTION. Official digital business card and portfolio for DP / Dominikphotofficial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
