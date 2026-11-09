@@ -1,8 +1,9 @@
-const CACHE_NAME = 'dp-links-v1';
+const CACHE_NAME = 'dp-links-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
+  './assets/qr.png',
   'https://i.postimg.cc/Xvc3zYGK/dp-logo.png'
 ];
 

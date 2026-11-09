@@ -22,20 +22,17 @@
     <meta property="og:image" content="https://i.postimg.cc/rmRSmS5h/street-azuolynas-03.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Google Fonts: Plus Jakarta Sans (Weights 400, 500, 700, 800) -->
+    <!-- Google Fonts: Plus Jakarta Sans (Weights 400, 500, 600, 700, 800) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- QR Code Generator Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-
     <style>
       /* ============================================================== */
-      /* 7. GLOBAL CSS TOKENS FILE (PURE DESIGN SYSTEM SPECIFICATION)   */
+      /* DESIGN SYSTEM SPECIFICATION (v1.0 Tokens & Micro-Interactions) */
       /* ============================================================== */
       :root {
         /* Brand Accents */
@@ -106,13 +103,15 @@
       /* Badges & Categories */
       .badge-category {
         font-weight: 700;
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--primary);
         background-color: var(--primary-subtle);
-        padding: 0.25rem 0.65rem;
+        padding: 0.22rem 0.65rem;
         border-radius: var(--radius-full);
+        display: inline-flex;
+        align-items: center;
       }
 
       /* Primary Button */
@@ -131,11 +130,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+        text-decoration: none;
       }
       .btn-primary:hover {
         background-color: var(--primary-hover);
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(17, 57, 57, 0.28);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
       }
 
       /* Secondary Button */
@@ -153,6 +157,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+        text-decoration: none;
       }
       .btn-secondary:hover {
         background-color: #ffffff;
@@ -160,26 +166,89 @@
         color: var(--primary);
         transform: translateY(-2px);
       }
+      .btn-secondary:active {
+        transform: translateY(0);
+      }
 
-      /* Interactive Link Card (Specification 4.2) */
-      .interactive-card {
+      /* ============================================================== */
+      /* PREMIUM LINK CARDS: SHIMMER, BORDER GLOW, LIFT + SCALE         */
+      /* ============================================================== */
+      .premium-link-card {
+        position: relative;
+        overflow: hidden;
         background-color: var(--bg-card);
         border: 1px solid var(--border-light);
         border-radius: var(--radius-md);
-        padding: 1.25rem 1.5rem;
-        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        display: block;
-        width: 100%;
+        padding: 1.15rem 1.35rem;
+        transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    border-color 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    background-color 0.28s ease;
+        will-change: transform, box-shadow;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.85rem;
         text-decoration: none;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
       }
-      .interactive-card:hover {
-        transform: translateY(-3px);
-        border-color: var(--primary);
-        box-shadow: var(--shadow-md);
+
+      /* Shimmer sweep effect */
+      .premium-link-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(17, 57, 57, 0.05) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateX(-160%) skewX(-20deg);
+        pointer-events: none;
+        animation: shimmerSweep 6.5s infinite ease-in-out;
       }
+
+      /* Hover & Tap: Lift + Scale + Border Glow */
+      .premium-link-card:hover {
+        transform: translateY(-3px) scale(1.008);
+        border-color: rgba(17, 57, 57, 0.4);
+        box-shadow: 0 0 0 1px rgba(17, 57, 57, 0.16), 0 12px 28px rgba(17, 57, 57, 0.10);
+      }
+
+      .premium-link-card:active {
+        transform: translateY(-1px) scale(0.995);
+        box-shadow: 0 4px 14px rgba(17, 57, 57, 0.08);
+      }
+
+      /* Featured variant (e.g. DP.CORPORATION) */
+      .premium-link-card.card-featured {
+        background-color: var(--primary);
+        color: #ffffff;
+        border-color: #113939;
+      }
+      .premium-link-card.card-featured::before {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.12) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+      .premium-link-card.card-featured:hover {
+        border-color: rgba(255, 255, 255, 0.35);
+        box-shadow: 0 0 0 1px rgba(17, 57, 57, 0.35), 0 14px 34px rgba(17, 57, 57, 0.25);
+      }
+
+      /* Card Arrow Action Circle */
       .card-arrow-circle {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
         border-radius: 9999px;
         background-color: var(--bg-slate);
         border: 1px solid var(--border-light);
@@ -190,11 +259,70 @@
         transition: var(--transition);
         flex-shrink: 0;
       }
-      .interactive-card:hover .card-arrow-circle {
+      .premium-link-card:hover .card-arrow-circle {
         background-color: var(--primary);
         color: #ffffff;
         border-color: var(--primary);
-        transform: translate(3px, -3px);
+        transform: translate(2px, -2px);
+      }
+      .premium-link-card.card-featured .card-arrow-circle {
+        background-color: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+      .premium-link-card.card-featured:hover .card-arrow-circle {
+        background-color: #ffffff;
+        color: var(--primary);
+      }
+
+      /* Icon Box */
+      .card-icon-box {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background-color: var(--primary-subtle);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: var(--transition);
+      }
+      .premium-link-card:hover .card-icon-box {
+        background-color: var(--primary);
+        color: #ffffff;
+        transform: scale(1.05);
+      }
+      .premium-link-card.card-featured .card-icon-box {
+        background-color: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+      }
+      .premium-link-card.card-featured:hover .card-icon-box {
+        background-color: #ffffff;
+        color: var(--primary);
+      }
+
+      /* Staggered load animation */
+      @keyframes slideUpFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .stagger-item {
+        opacity: 0;
+        animation: slideUpFadeIn 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--stagger-index, 0) * 0.05s + 0.06s);
+      }
+
+      @keyframes shimmerSweep {
+        0% { transform: translateX(-160%) skewX(-20deg); }
+        40%, 100% { transform: translateX(260%) skewX(-20deg); }
       }
 
       /* 3D Floating Perspective (Card Stack Specification 5) */
@@ -217,20 +345,17 @@
         transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1);
         box-shadow: var(--shadow-md);
       }
-      /* Top Layer (Active) */
       .stack-layer-1 {
         transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
         opacity: 1.0;
         z-index: 10;
         box-shadow: var(--shadow-active);
       }
-      /* Second Layer (Offset Right) */
       .stack-layer-2 {
         transform: translate3d(24px, 14px, -40px) scale(0.93) rotate(3.5deg);
         opacity: 0.88;
         z-index: 8;
       }
-      /* Third Layer (Offset Left) */
       .stack-layer-3 {
         transform: translate3d(-22px, 24px, -80px) scale(0.86) rotate(-3.5deg);
         opacity: 0.72;
@@ -244,6 +369,21 @@
       }
       .animate-kenburns {
         animation: kenburns-subtle 16s ease-in-out infinite alternate;
+      }
+
+      /* Prefers Reduced Motion Accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        .premium-link-card::before,
+        .animate-kenburns,
+        .stagger-item {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .premium-link-card:hover,
+        .premium-link-card:active {
+          transform: none !important;
+        }
       }
 
       ::-webkit-scrollbar {
@@ -296,22 +436,27 @@
         <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/45 to-black/60"></div>
       </div>
 
-      <!-- Top Header Navigation (Single logo placement, NO text "DP" next to logo) -->
+      <!-- Top Header Navigation (Single logo, NO duplicate text next to logo) -->
       <div class="relative z-30 w-full max-w-[1200px] mx-auto px-6 pt-7 flex items-center justify-between">
-        <img src="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" alt="Emblem" class="w-11 h-11 object-contain drop-shadow-md" referrerpolicy="no-referrer" />
+        <a href="#hero-section" class="inline-block transition-transform hover:scale-105" title="DP Logo">
+          <img src="https://i.postimg.cc/Xvc3zYGK/dp-logo.png" alt="DP Emblem" class="w-11 h-11 object-contain drop-shadow-md" referrerpolicy="no-referrer" />
+        </a>
 
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-2 sm:gap-2.5">
+          <!-- Install Button (PWA) -->
           <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#113939] hover:bg-[#F8FAFA] active:scale-95 text-xs font-bold shadow-md transition-all">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
             <span>Install</span>
           </button>
 
-          <button onclick="openQRModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-semibold text-white backdrop-blur-md border border-white/20 transition-all">
+          <!-- QR Code Button -->
+          <button onclick="openQRModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-semibold text-white backdrop-blur-md border border-white/20 transition-all" title="Show QR Code">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
-            <span class="text-[11px] uppercase tracking-wider">QR</span>
+            <span class="text-[11px] uppercase tracking-wider">QR Code</span>
           </button>
 
-          <button onclick="downloadVCard()" class="btn-primary !py-1.5 !px-4 !text-xs">
+          <!-- Save Contact vCard (Name only) -->
+          <button onclick="downloadVCard()" class="btn-primary !py-1.5 !px-3.5 sm:!px-4 !text-xs" title="Save Contact">
             <span>Save Contact</span>
           </button>
         </div>
@@ -375,8 +520,8 @@
       </div>
 
       <!-- 3D Floating Perspective (Card Stack Specification 5) -->
-      <div class="w-full my-6 mb-12 flex flex-col items-center">
-        <div id="photo-stack" class="stack-container" onclick="cyclePhotoStack()" title="Tap to cycle 3D stack">
+      <div class="w-full my-4 mb-12 flex flex-col items-center">
+        <div id="photo-stack" class="stack-container" onclick="cyclePhotoStack()" title="Tap card stack to shuffle">
           <!-- Layer 1: Top Layer (Active) -->
           <div id="deck-card-0" class="stack-layer stack-layer-1">
             <img src="https://i.postimg.cc/FKJ0hGDh/Love.jpg" alt="Love" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
@@ -395,116 +540,26 @@
         </p>
       </div>
 
-      <!-- Destination Cards (Linktree / Taplink Grid Specification 4.2) -->
-      <div class="w-full max-w-xl space-y-3.5">
-        
-        <!-- 1. Services Card -->
-        <a href="https://portfolio.dominikphotofficial.lt/services.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
-          <div class="flex items-center justify-between mb-1">
-            <span class="badge-category">Services</span>
-            <div class="card-arrow-circle">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </div>
-          <h3 class="card-title text-[#1A1A1A]">
-            Photography Services
-          </h3>
-          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
-            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
-              EXPLORE SERVICES →
-            </span>
-          </div>
-        </a>
-
-        <!-- 2. TFP Booking Card -->
-        <a href="https://portfolio.dominikphotofficial.lt/tfp-booking.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
-          <div class="flex items-center justify-between mb-1">
-            <span class="badge-category">Booking</span>
-            <div class="card-arrow-circle">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </div>
-          <h3 class="card-title text-[#1A1A1A]">
-            TFP Booking
-          </h3>
-          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
-            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
-              TFP BOOKING →
-            </span>
-          </div>
-        </a>
-
-        <!-- 3. Contacts Card -->
-        <a href="https://portfolio.dominikphotofficial.lt/contacts.html" target="_blank" rel="noopener noreferrer" class="interactive-card group">
-          <div class="flex items-center justify-between mb-1">
-            <span class="badge-category">Inquiries</span>
-            <div class="card-arrow-circle">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </div>
-          <h3 class="card-title text-[#1A1A1A]">
-            Contacts & Inquiries
-          </h3>
-          <div class="mt-3 pt-3 border-t border-[#EDF2F2] flex items-center justify-between text-xs">
-            <span class="text-[#8A9696] font-mono text-[11px]">portfolio.dominikphotofficial.lt</span>
-            <span class="font-bold text-[11px] tracking-wider text-[#113939] uppercase">
-              GET IN TOUCH →
-            </span>
-          </div>
-        </a>
-
-        <!-- 4. DP.CORPORATION -->
-        <a href="https://corporation.dominikphotofficial.lt/" target="_blank" rel="noopener noreferrer" class="interactive-card !bg-[#113939] text-white hover:!border-[#113939] group">
-          <div class="flex items-center justify-between mb-1">
-            <span class="badge-category !bg-white/10 !text-white">Ecosystem</span>
-            <div class="card-arrow-circle !bg-white/10 !border-white/20 !text-white group-hover:!bg-white group-hover:!text-[#113939]">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </div>
-          <h3 class="card-title text-white">
-            DP.CORPORATION
-          </h3>
-          <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-            <span class="text-[#8A9696] font-mono text-[11px]">corporation.dominikphotofficial.lt</span>
-            <span class="font-bold text-[11px] tracking-wider text-white uppercase">
-              EXPLORE DP.CORPORATION →
-            </span>
-          </div>
-        </a>
+      <!-- ============================================================ -->
+      <!-- DYNAMIC CONFIG-DRIVEN LINKS LIST                             -->
+      <!-- Built from SITE_CONFIG.links with animated shimmer & glow    -->
+      <!-- ============================================================ -->
+      <div id="links-container" class="w-full max-w-xl space-y-3.5">
+        <!-- Rendered dynamically by JavaScript from SITE_CONFIG.links -->
       </div>
 
-      <!-- Social Media Section (Specification 4.2 / 4 Channels) -->
+      <!-- ============================================================ -->
+      <!-- SOCIAL CHANNELS (Instagram, TikTok, YouTube, Behance)        -->
+      <!-- ============================================================ -->
       <div class="w-full max-w-xl my-8">
-        <div class="grid grid-cols-2 gap-3">
-          <!-- Instagram -->
-          <a href="https://instagram.com/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
-            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-            <span class="text-xs font-bold text-[#1A1A1A]">Instagram</span>
-          </a>
-
-          <!-- Threads -->
-          <a href="https://threads.net/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
-            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-            <span class="text-xs font-bold text-[#1A1A1A]">Threads</span>
-          </a>
-
-          <!-- Behance -->
-          <a href="https://behance.net/dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
-            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span class="text-xs font-bold text-[#1A1A1A]">Behance</span>
-          </a>
-
-          <!-- YouTube -->
-          <a href="https://youtube.com/@dominikphotofficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white transition-all text-decoration-none">
-            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
-            <span class="text-xs font-bold text-[#1A1A1A]">YouTube</span>
-          </a>
+        <div id="socials-container" class="grid grid-cols-2 gap-3">
+          <!-- Rendered dynamically from SITE_CONFIG.socials -->
         </div>
       </div>
 
-      <!-- Direct Contact Section -->
+      <!-- ============================================================ -->
+      <!-- DIRECT CONTACT SECTION (Official mailto & Contacts link)     -->
+      <!-- ============================================================ -->
       <div class="w-full max-w-xl rounded-[20px] bg-[#F8FAFA] border border-[#E4EAEA] p-6 text-center">
         <span class="badge-category">Contact</span>
         <h3 class="card-title text-[#1A1A1A] mt-2 mb-3">
@@ -514,7 +569,7 @@
         <!-- Mailto Link with Copy Button -->
         <div class="mb-4 flex items-center justify-between gap-3 p-3 rounded-[14px] bg-white border border-[#E4EAEA]">
           <a href="mailto:info@dominikphotofficial.lt" class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#1A1A1A] hover:text-[#113939] truncate">
-            <svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <svg class="w-4 h-4 text-[#113939] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             <span class="truncate">info@dominikphotofficial.lt</span>
           </a>
           <button onclick="copyText('info@dominikphotofficial.lt', 'Email copied!')" class="px-3 py-1.5 rounded-full bg-[#F8FAFA] hover:bg-[#E4EAEA] text-xs font-bold text-[#113939] transition-colors shrink-0">
@@ -527,7 +582,7 @@
             <span>Contact Form</span>
           </a>
           <button onclick="downloadVCard()" class="btn-secondary flex-1 !text-xs">
-            <span>Save vCard</span>
+            <span>Save Contact</span>
           </button>
         </div>
       </div>
@@ -549,30 +604,89 @@
     </footer>
 
     <!-- ============================================================== -->
-    <!-- 4. MODALS: QR SHARE & PWA GUIDE                                -->
+    <!-- 4. MODALS: FILM AWARD MODAL, QR SHARE & PWA GUIDE              -->
     <!-- ============================================================== -->
     
-    <!-- QR Share Modal -->
-    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div class="relative w-full max-w-xs rounded-[20px] bg-white border border-[#E4EAEA] p-6 text-center text-[#1A1A1A] shadow-2xl">
+    <!-- Exactly ONE Film Award Modal (No invented awards, strictly factual) -->
+    <div id="film-award-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-opacity">
+      <div class="relative w-full max-w-sm rounded-[20px] bg-white border border-[#E4EAEA] p-6 text-[#1A1A1A] shadow-2xl transition-all">
+        <button onclick="closeFilmAwardModal()" class="absolute top-4 right-4 p-2 rounded-full text-[#5E6D6D] hover:text-[#1A1A1A] hover:bg-[#F8FAFA] transition-colors" aria-label="Close">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-[#113939]/10 text-[#113939] flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M6 4h12v6a6 6 0 0 1-12 0V4Z"/></svg>
+          </div>
+          <div>
+            <span class="badge-category">Film Award</span>
+            <h3 class="card-title text-[#1A1A1A] mt-0.5">Frozen Time</h3>
+          </div>
+        </div>
+
+        <!-- Factual Award Information -->
+        <div class="space-y-2.5 p-4 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] text-left text-xs text-[#1A1A1A] mb-5">
+          <div class="flex items-start justify-between gap-2 border-b border-[#E4EAEA] pb-2">
+            <span class="text-[#5E6D6D]">Film:</span>
+            <span id="award-film-name" class="font-bold text-right text-[#113939]">"Frozen Time"</span>
+          </div>
+          <div class="flex items-start justify-between gap-2 border-b border-[#E4EAEA] pb-2">
+            <span class="text-[#5E6D6D]">Award:</span>
+            <span id="award-place-name" class="font-bold text-right text-[#113939]">1st place</span>
+          </div>
+          <div class="flex items-start justify-between gap-2 border-b border-[#E4EAEA] pb-2">
+            <span class="text-[#5E6D6D]">Festival:</span>
+            <span id="award-festival-name" class="font-semibold text-right">Ąžuolynas International Film Festival (ASIFF)</span>
+          </div>
+          <div class="flex items-start justify-between gap-2 border-b border-[#E4EAEA] pb-2">
+            <span class="text-[#5E6D6D]">Date:</span>
+            <span id="award-date-name" class="font-mono text-right">30 April 2026</span>
+          </div>
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-[#5E6D6D]">Place:</span>
+            <span id="award-location-name" class="text-right">The festival was held at school</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <a href="https://portfolio.dominikphotofficial.lt/frozen-time.html" target="_blank" rel="noopener noreferrer" class="btn-primary flex-1 !text-xs !py-2.5">
+            <span>Watch the film</span>
+            <svg class="w-3.5 h-3.5 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <button onclick="closeFilmAwardModal()" class="btn-secondary !text-xs !py-2.5 !px-5">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Share Modal (References assets/qr.png with fallback & direct download) -->
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-opacity">
+      <div class="relative w-full max-w-xs rounded-[20px] bg-white border border-[#E4EAEA] p-6 text-center text-[#1A1A1A] shadow-[0_20px_50px_rgba(17,57,57,0.22)]">
         <button onclick="closeQRModal()" class="absolute top-4 right-4 p-1.5 rounded-full text-[#5E6D6D] hover:text-[#1A1A1A] transition-colors" aria-label="Close">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
         </button>
 
-        <h4 class="text-sm font-extrabold uppercase tracking-widest text-[#113939] mb-1">DP.LINK</h4>
-        <p class="text-xs text-[#5E6D6D] mb-4">Scan with any phone camera</p>
+        <h4 class="text-sm font-extrabold uppercase tracking-widest text-[#113939] mb-1">DP.LINK QR CODE</h4>
+        <p class="text-xs text-[#5E6D6D] mb-4">Scan with any smartphone camera</p>
 
-        <div class="w-52 h-52 mx-auto p-2 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center mb-4">
-          <canvas id="qr-canvas"></canvas>
+        <!-- QR Image Display Area -->
+        <div class="w-56 h-56 mx-auto p-3 rounded-[16px] bg-[#F8FAFA] border border-[#E4EAEA] flex items-center justify-center mb-5 shadow-inner overflow-hidden">
+          <img id="qr-image" src="assets/qr.png" alt="DP.LINK QR Code" class="max-w-full max-h-full object-contain rounded-[8px]" onerror="handleQRImageError(this)" />
+          <div id="qr-image-fallback" class="hidden flex-col items-center justify-center p-3 text-center">
+            <svg class="w-8 h-8 text-[#5E6D6D] mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
+            <span class="text-xs font-semibold text-[#1A1A1A]">assets/qr.png</span>
+            <span class="text-[11px] text-[#8A9696] mt-1">Please upload assets/qr.png image</span>
+          </div>
         </div>
 
         <div class="flex items-center gap-2">
           <button onclick="copyCurrentUrl()" class="btn-secondary flex-1 !py-2 !px-3 !text-xs">
             Copy Link
           </button>
-          <button onclick="downloadQRCodePNG()" class="btn-primary flex-1 !py-2 !px-3 !text-xs">
-            Save QR
-          </button>
+          <a id="save-qr-btn" href="assets/qr.png" download="dp-links-qr.png" class="btn-primary flex-1 !py-2 !px-3 !text-xs text-center">
+            Save QR code
+          </a>
         </div>
       </div>
     </div>
@@ -588,7 +702,7 @@
         <p class="text-xs text-[#5E6D6D] mb-4">Add to Home Screen for instant offline access:</p>
 
         <div class="text-left text-xs text-[#5E6D6D] bg-[#F8FAFA] p-4 rounded-[14px] border border-[#E4EAEA] mb-4 space-y-2">
-          <p>1. Tap the <strong class="text-[#1A1A1A]">Share</strong> button in Safari.</p>
+          <p>1. Tap the <strong class="text-[#1A1A1A]">Share</strong> button in your browser.</p>
           <p>2. Select <strong class="text-[#1A1A1A]">Add to Home Screen</strong>.</p>
         </div>
 
@@ -599,53 +713,331 @@
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 px-4 py-2 rounded-full bg-[#113939] text-white text-xs font-semibold shadow-2xl transition-all">
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 px-4 py-2.5 rounded-full bg-[#113939] text-white text-xs font-semibold shadow-2xl transition-all">
       <span id="toast-message">Copied</span>
     </div>
 
     <!-- ============================================================== -->
-    <!-- 5. JAVASCRIPT: SLIDESHOW, 3D STACK, PWA & UTILITIES            -->
+    <!-- 5. JAVASCRIPT CONFIGURATION & LOGIC                            -->
     <!-- ============================================================== -->
     <script>
-      // Service Worker Registration for PWA
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js').catch(() => {});
+      /* ============================================================== */
+      /* SITE CONFIGURATION: Exactly factual data                       */
+      /* ============================================================== */
+      const SITE_CONFIG = {
+        // Exactly ONE film award with only the facts specified:
+        filmAward: {
+          film: 'Frozen Time',
+          award: '1st place',
+          festival: 'Ąžuolynas International Film Festival (ASIFF)',
+          date: '30 April 2026',
+          place: 'The festival was held at school'
+        },
+
+        // Links order:
+        // 1. Top link – Portfolio
+        // 2. Frozen Time (film)
+        // 3. Film Award: Frozen Time (opens factual modal)
+        // 4. Photography Services
+        // 5. TFP Booking
+        // 6. Contacts & Inquiries
+        // 7. QR Code & Share
+        // 8. DP.CORPORATION
+        links: [
+          {
+            id: 'portfolio',
+            label: 'Main Portfolio',
+            subtitle: 'portfolio.dominikphotofficial.lt',
+            badge: 'Portfolio',
+            url: 'https://portfolio.dominikphotofficial.lt',
+            icon: 'globe',
+            type: 'link',
+            featured: false
+          },
+          {
+            id: 'frozen-time',
+            label: 'Frozen Time',
+            subtitle: 'Watch the film',
+            badge: 'Film',
+            url: 'https://portfolio.dominikphotofficial.lt/frozen-time.html',
+            icon: 'film',
+            type: 'link',
+            featured: false
+          },
+          {
+            id: 'film-award',
+            label: 'Film Award: Frozen Time',
+            subtitle: '1st place · Ąžuolynas International Film Festival (ASIFF)',
+            badge: 'Award',
+            action: 'openFilmAwardModal',
+            icon: 'award',
+            type: 'action',
+            featured: false
+          },
+          {
+            id: 'services',
+            label: 'Photography Services',
+            subtitle: 'Commercial, editorial & portrait commissions',
+            badge: 'Services',
+            url: 'https://portfolio.dominikphotofficial.lt/services.html',
+            icon: 'camera',
+            type: 'link',
+            featured: false
+          },
+          {
+            id: 'tfp-booking',
+            label: 'TFP Booking',
+            subtitle: 'Apply for collaborative photo sessions',
+            badge: 'Booking',
+            url: 'https://portfolio.dominikphotofficial.lt/tfp-booking.html',
+            icon: 'calendar',
+            type: 'link',
+            featured: false
+          },
+          {
+            id: 'contacts',
+            label: 'Contacts & Inquiries',
+            subtitle: 'Direct form & client communication',
+            badge: 'Inquiries',
+            url: 'https://portfolio.dominikphotofficial.lt/contacts.html',
+            icon: 'mail',
+            type: 'link',
+            featured: false
+          },
+          {
+            id: 'qr-code',
+            label: 'QR Code & Share',
+            subtitle: 'Scan to open on smartphone or save PNG',
+            badge: 'Share',
+            action: 'openQRModal',
+            icon: 'qr',
+            type: 'action',
+            featured: false
+          },
+          {
+            id: 'corporation',
+            label: 'DP.CORPORATION',
+            subtitle: 'corporation.dominikphotofficial.lt',
+            badge: 'Ecosystem',
+            url: 'https://corporation.dominikphotofficial.lt/',
+            icon: 'building',
+            type: 'link',
+            featured: true
+          }
+        ],
+
+        // Social Channels (Instagram, TikTok, YouTube, Behance; no LinkedIn, no 500px, no Vimeo)
+        socials: [
+          {
+            name: 'Instagram',
+            handle: '@dominikphotofficial',
+            url: 'https://instagram.com/dominikphotofficial',
+            icon: 'instagram'
+          },
+          {
+            name: 'TikTok',
+            handle: '@dominikphotofficial',
+            url: 'https://tiktok.com/@dominikphotofficial',
+            icon: 'tiktok'
+          },
+          {
+            name: 'YouTube',
+            handle: '@dominikphotofficial',
+            url: 'https://youtube.com/@dominikphotofficial',
+            icon: 'youtube'
+          },
+          {
+            name: 'Behance',
+            handle: '@dominikphotofficial',
+            url: 'https://behance.net/dominikphotofficial',
+            icon: 'behance'
+          }
+        ]
+      };
+
+      /* ============================================================== */
+      /* INLINE SVG ICON DICTIONARY                                      */
+      /* ============================================================== */
+      const ICONS = {
+        globe: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+        film: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 11 2-5h14l-2 5H4Z"/><path d="m4 11 16 0v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9Z"/><path d="m6.5 6 3 5"/><path d="m11.5 6 3 5"/><path d="m16.5 6 3 5"/></svg>',
+        award: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M6 4h12v6a6 6 0 0 1-12 0V4Z"/></svg>',
+        camera: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>',
+        calendar: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>',
+        mail: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+        qr: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>',
+        building: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
+        instagram: '<svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>',
+        tiktok: '<svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>',
+        youtube: '<svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>',
+        behance: '<svg class="w-4 h-4 text-[#113939]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/></svg>',
+        arrowRight: '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>'
+      };
+
+      /* ============================================================== */
+      /* RENDER DYNAMIC LINKS & SOCIALS                                 */
+      /* ============================================================== */
+      function renderLinks() {
+        const container = document.getElementById('links-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        SITE_CONFIG.links.forEach((item, index) => {
+          const iconSvg = ICONS[item.icon] || ICONS.globe;
+          const isFeatured = item.featured === true;
+          
+          let cardEl;
+          if (item.type === 'action') {
+            cardEl = document.createElement('button');
+            cardEl.type = 'button';
+            cardEl.onclick = () => window[item.action]();
+          } else {
+            cardEl = document.createElement('a');
+            cardEl.href = item.url;
+            cardEl.target = '_blank';
+            cardEl.rel = 'noopener noreferrer';
+          }
+
+          cardEl.className = `premium-link-card stagger-item ${isFeatured ? 'card-featured' : ''}`;
+          cardEl.style.setProperty('--stagger-index', index);
+
+          cardEl.innerHTML = `
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="card-icon-box">
+                ${iconSvg}
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="badge-category ${isFeatured ? '!bg-white/15 !text-white' : ''}">
+                    ${item.badge}
+                  </span>
+                </div>
+                <h3 class="card-title text-[1.05rem] sm:text-[1.12rem] ${isFeatured ? 'text-white' : 'text-[#1A1A1A]'} truncate">
+                  ${item.label}
+                </h3>
+                <p class="text-xs ${isFeatured ? 'text-white/75' : 'text-[#5E6D6D]'} truncate">
+                  ${item.subtitle}
+                </p>
+              </div>
+            </div>
+            <div class="card-arrow-circle">
+              ${ICONS.arrowRight}
+            </div>
+          `;
+
+          container.appendChild(cardEl);
         });
       }
 
-      // PWA Install Prompt handling
-      let deferredPrompt = null;
-      const pwaBtn = document.getElementById('pwa-install-btn');
+      function renderSocials() {
+        const container = document.getElementById('socials-container');
+        if (!container) return;
+        container.innerHTML = '';
 
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (pwaBtn) {
-          pwaBtn.classList.remove('hidden');
-          pwaBtn.classList.add('flex');
-        }
-      });
+        SITE_CONFIG.socials.forEach((item, index) => {
+          const iconSvg = ICONS[item.icon] || ICONS.globe;
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.className = 'stagger-item flex items-center gap-3 p-3.5 rounded-[14px] bg-[#F8FAFA] border border-[#E4EAEA] hover:border-[#113939] hover:bg-white active:scale-95 transition-all text-decoration-none';
+          a.style.setProperty('--stagger-index', index + SITE_CONFIG.links.length);
 
-      function triggerPWAInstall() {
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then(() => {
-            deferredPrompt = null;
-            if (pwaBtn) pwaBtn.classList.add('hidden');
-          });
-        } else {
-          document.getElementById('pwa-guide-modal').classList.remove('hidden');
-          document.getElementById('pwa-guide-modal').classList.add('flex');
+          a.innerHTML = `
+            <div class="w-7 h-7 rounded-lg bg-white border border-[#E4EAEA] flex items-center justify-center shrink-0">
+              ${iconSvg}
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#1A1A1A] truncate">${item.name}</div>
+              <div class="text-[10px] text-[#8A9696] font-mono truncate">${item.handle}</div>
+            </div>
+          `;
+          container.appendChild(a);
+        });
+      }
+
+      /* ============================================================== */
+      /* FILM AWARD MODAL LOGIC (EXACT FACTS ONLY)                      */
+      /* ============================================================== */
+      function openFilmAwardModal() {
+        const modal = document.getElementById('film-award-modal');
+        if (!modal) return;
+
+        const info = SITE_CONFIG.filmAward;
+        document.getElementById('award-film-name').textContent = `"${info.film}"`;
+        document.getElementById('award-place-name').textContent = info.award;
+        document.getElementById('award-festival-name').textContent = info.festival;
+        document.getElementById('award-date-name').textContent = info.date;
+        document.getElementById('award-location-name').textContent = info.place;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeFilmAwardModal() {
+        const modal = document.getElementById('film-award-modal');
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
         }
       }
 
-      function closePWAGuide() {
-        document.getElementById('pwa-guide-modal').classList.add('hidden');
-        document.getElementById('pwa-guide-modal').classList.remove('flex');
+      /* ============================================================== */
+      /* QR CODE MODAL (SHOWS assets/qr.png & DOWNLOADS dp-links-qr.png)*/
+      /* ============================================================== */
+      const qrModal = document.getElementById('qr-modal');
+
+      function openQRModal() {
+        if (qrModal) {
+          qrModal.classList.remove('hidden');
+          qrModal.classList.add('flex');
+        }
       }
 
-      // 8 Photographs Slideshow
+      function closeQRModal() {
+        if (qrModal) {
+          qrModal.classList.add('hidden');
+          qrModal.classList.remove('flex');
+        }
+      }
+
+      function handleQRImageError(img) {
+        img.classList.add('hidden');
+        const fallback = document.getElementById('qr-image-fallback');
+        if (fallback) fallback.classList.remove('hidden');
+      }
+
+      function copyCurrentUrl() {
+        copyText(window.location.href, 'Link copied!');
+      }
+
+      /* ============================================================== */
+      /* VCARD SAVE CONTACT: ONLY NAME (DOMINIK SUSKEVIC)                */
+      /* ============================================================== */
+      function downloadVCard() {
+        const vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Dominik Suskevic',
+          'N:Suskevic;Dominik;;;',
+          'END:VCARD'
+        ].join('\r\n');
+
+        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Dominik_Suskevic.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showToast('Contact card saved');
+      }
+
+      /* ============================================================== */
+      /* SLIDESHOW ENGINE (8 Photographs, Ken Burns, Fade Transition)   */
+      /* ============================================================== */
       const slides = document.querySelectorAll('.slide');
       const counterEl = document.getElementById('slide-counter');
       const playPauseText = document.getElementById('play-pause-text');
@@ -666,7 +1058,7 @@
         const currImg = slides[currentSlide].querySelector('img');
         if (currImg) currImg.classList.add('animate-kenburns');
 
-        counterEl.textContent = `0${currentSlide + 1} / 0${slides.length}`;
+        if (counterEl) counterEl.textContent = `0${currentSlide + 1} / 0${slides.length}`;
       }
 
       function nextSlide() {
@@ -682,16 +1074,18 @@
         isPlaying = !isPlaying;
         if (isPlaying) {
           startSlideshow();
-          playPauseText.textContent = 'Pause';
+          if (playPauseText) playPauseText.textContent = 'Pause';
         } else {
           if (slideInterval) clearInterval(slideInterval);
-          playPauseText.textContent = 'Play';
+          if (playPauseText) playPauseText.textContent = 'Play';
         }
       }
 
       startSlideshow();
 
-      // 3D Floating Perspective (Card Stack Specification 5)
+      /* ============================================================== */
+      /* 3D FLOATING PERSPECTIVE (Card Stack Shuffle)                   */
+      /* ============================================================== */
       let activeDeckPos = 0;
       const deckCards = [
         document.getElementById('deck-card-0'),
@@ -702,6 +1096,7 @@
       function cyclePhotoStack() {
         activeDeckPos = (activeDeckPos + 1) % 3;
         deckCards.forEach((card, idx) => {
+          if (!card) return;
           const relPos = (idx - activeDeckPos + 3) % 3;
           card.classList.remove('stack-layer-1', 'stack-layer-2', 'stack-layer-3');
           if (relPos === 0) {
@@ -714,81 +1109,67 @@
         });
       }
 
-      // QR Modal
-      const qrModal = document.getElementById('qr-modal');
-      const qrCanvas = document.getElementById('qr-canvas');
+      /* ============================================================== */
+      /* PWA SERVICE WORKER & INSTALL PROMPT                            */
+      /* ============================================================== */
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
 
-      function openQRModal() {
-        qrModal.classList.remove('hidden');
-        qrModal.classList.add('flex');
-        if (typeof QRCode !== 'undefined' && qrCanvas) {
-          QRCode.toCanvas(qrCanvas, window.location.href, {
-            width: 200,
-            margin: 1,
-            color: { dark: '#113939', light: '#FFFFFF' }
+      let deferredPrompt = null;
+      const pwaBtn = document.getElementById('pwa-install-btn');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (pwaBtn) {
+          pwaBtn.classList.remove('hidden');
+          pwaBtn.classList.add('flex');
+        }
+      });
+
+      function triggerPWAInstall() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            if (pwaBtn) pwaBtn.classList.add('hidden');
           });
+        } else {
+          const guide = document.getElementById('pwa-guide-modal');
+          if (guide) {
+            guide.classList.remove('hidden');
+            guide.classList.add('flex');
+          }
         }
       }
 
-      function closeQRModal() {
-        qrModal.classList.add('hidden');
-        qrModal.classList.remove('flex');
+      function closePWAGuide() {
+        const guide = document.getElementById('pwa-guide-modal');
+        if (guide) {
+          guide.classList.add('hidden');
+          guide.classList.remove('flex');
+        }
       }
 
-      function downloadQRCodePNG() {
-        if (!qrCanvas) return;
-        const link = document.createElement('a');
-        link.download = 'DP_LINK_QR.png';
-        link.href = qrCanvas.toDataURL('image/png');
-        link.click();
-      }
-
-      function copyCurrentUrl() {
-        copyText(window.location.href, 'Link copied!');
-      }
-
-      // vCard Contact (.vcf)
-      function downloadVCard() {
-        const vcard = [
-          'BEGIN:VCARD',
-          'VERSION:3.0',
-          'FN:DP.LINK',
-          'ORG:DP.CORPORATION',
-          'TITLE:Photographer',
-          'EMAIL;TYPE=INTERNET,WORK:info@dominikphotofficial.lt',
-          'URL;TYPE=WORK:https://portfolio.dominikphotofficial.lt/',
-          'URL;TYPE=SERVICES:https://portfolio.dominikphotofficial.lt/services.html',
-          'URL;TYPE=BOOKING:https://portfolio.dominikphotofficial.lt/tfp-booking.html',
-          'URL;TYPE=CONTACTS:https://portfolio.dominikphotofficial.lt/contacts.html',
-          'URL;TYPE=ECOSYSTEM:https://corporation.dominikphotofficial.lt/',
-          'NOTE:SPACE. LIGHT. EMOTION. DP.LINK',
-          'END:VCARD'
-        ].join('\r\n');
-
-        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'DP_LINK.vcf');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        showToast('vCard downloaded');
-      }
-
-      // Toast & Clipboard
+      /* ============================================================== */
+      /* TOAST & UTILITIES                                              */
+      /* ============================================================== */
       let toastTimer = null;
       function showToast(msg) {
         const toast = document.getElementById('toast');
-        document.getElementById('toast-message').textContent = msg;
+        const msgEl = document.getElementById('toast-message');
+        if (!toast || !msgEl) return;
+        msgEl.textContent = msg;
         toast.classList.remove('hidden');
         toast.classList.add('flex');
         if (toastTimer) clearTimeout(toastTimer);
         toastTimer = setTimeout(() => {
           toast.classList.add('hidden');
           toast.classList.remove('flex');
-        }, 2000);
+        }, 2200);
       }
 
       function copyText(text, msg) {
@@ -799,7 +1180,37 @@
         });
       }
 
-      document.getElementById('current-year').textContent = new Date().getFullYear();
+      // Close modals on clicking overlay backdrop
+      window.addEventListener('click', (e) => {
+        if (e.target === qrModal) closeQRModal();
+        const awardModal = document.getElementById('film-award-modal');
+        if (e.target === awardModal) closeFilmAwardModal();
+        const pwaGuide = document.getElementById('pwa-guide-modal');
+        if (e.target === pwaGuide) closePWAGuide();
+      });
+
+      // Escape key closes modals
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeQRModal();
+          closeFilmAwardModal();
+          closePWAGuide();
+        }
+      });
+
+      // Set copyright year
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Initialize dynamic components on load
+      document.addEventListener('DOMContentLoaded', () => {
+        renderLinks();
+        renderSocials();
+      });
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        renderLinks();
+        renderSocials();
+      }
     </script>
   </body>
 </html>
